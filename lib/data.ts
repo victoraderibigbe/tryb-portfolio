@@ -16,7 +16,7 @@ export const projects: Project[] = [
     id: 1,
     title: "Brand Design",
     category: "branding",
-    image: "images/brand1.jpg",
+    image: "images/brand1.webp",
     description:
       "Developed a cohesive brand identity featuring logo, color palette, and visual system to establish a consistent and memorable presence across all platforms.",
     isFeatured: true,
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     id: 2,
     title: "Concert Flyer Design",
     category: "flyers",
-    image: "images/flyer1.jpg",
+    image: "images/flyer1.webp",
     description:
       "Crafted an eye-catching concert flyer with bold typography, energetic visuals, and a vibrant layout to capture audience attention.",
     isFeatured: true,
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     id: 3,
     title: "Event Branding",
     category: "branding",
-    image: "images/brand2.jpg",
+    image: "images/brand2.webp",
     description:
       "Created a unified event branding package, including logo marks, banners, and promotional materials for a professional, recognizable look.",
     isFeatured: true,
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     id: 4,
     title: "Church Flyer Design",
     category: "flyers",
-    image: "images/flyer2.jpg",
+    image: "images/flyer2.webp",
     description:
       "Designed an elegant church flyer with warm tones and inspiring typography to effectively communicate event details and theme.",
     isFeatured: true,
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     id: 5,
     title: "Yearbook Design",
     category: "branding",
-    image: "images/brand3.jpg",
+    image: "images/brand3.webp",
     description:
       "Produced a well-structured yearbook design that combines engaging layouts, school colors, and meaningful imagery to celebrate memories and achievements.",
     isFeatured: true,
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     id: 6,
     title: "Church Flyer Design",
     category: "flyers",
-    image: "images/flyer3.jpg",
+    image: "images/flyer3.webp",
     description:
       "Developed a creative and modern flyer for a church event, blending impactful visuals with clear and concise messaging.",
     isFeatured: false,
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     id: 7,
     title: "Event Branding",
     category: "branding",
-    image: "images/brand4.jpg",
+    image: "images/brand4.webp",
     description:
       "Delivered a full event branding concept, including logo design, color system, and print materials, ensuring consistent brand storytelling.",
     isFeatured: false,
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     id: 8,
     title: "Church Flyer Design",
     category: "flyers",
-    image: "images/flyer4.jpg",
+    image: "images/flyer4.webp",
     description:
       "Designed a visually compelling church program flyer that combines faith-inspired imagery with balanced typography for clarity and appeal.",
     isFeatured: false,
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     id: 9,
     title: "Corporate Event Branding",
     category: "branding",
-    image: "images/brand5.jpg",
+    image: "images/brand5.webp",
     description:
       "Developed an elegant and professional branding suite for a corporate event, maintaining brand consistency across print and digital assets.",
     isFeatured: false,
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     id: 10,
     title: "Music Cover Design",
     category: "flyers",
-    image: "images/flyer5.jpg",
+    image: "images/flyer5.webp",
     description:
       "Created a striking music cover art that visually represents the artist’s style and genre, combining bold imagery with modern graphic elements.",
     isFeatured: true,
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     id: 11,
     title: "Product Launch Branding",
     category: "branding",
-    image: "images/brand6.jpg",
+    image: "images/brand6.webp",
     description:
       "Executed a complete branding design for a product launch, including logo creation, packaging concepts, and promotional visuals for maximum impact.",
     isFeatured: false,
@@ -118,7 +118,7 @@ export const services: Service[] = [
     id: 1,
     icon: Sparkles,
     title: "Brand Identity Design",
-    image: "images/brand1.jpg",
+    image: "images/brand1.webp",
     description:
       "I create logos and visual systems that define your brand and make you unforgettable.",
     features: [
@@ -133,7 +133,7 @@ export const services: Service[] = [
     id: 2,
     icon: Palette,
     title: "Graphic Design",
-    image: "images/flyer1.jpg",
+    image: "images/flyer1.webp",
     description:
       "From social media flyers to posters, banners, and digital ads — I design visuals that command attention.",
     features: [
@@ -148,7 +148,7 @@ export const services: Service[] = [
     id: 3,
     icon: ImageIcon,
     title: "Photography & Editing",
-    image: "images/black-girl.jpg",
+    image: "images/black-girl.webp",
     description:
       "Clean, expressive photos and edits that align perfectly with your brand aesthetic.",
     features: [

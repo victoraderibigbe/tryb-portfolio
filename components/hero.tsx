@@ -61,7 +61,7 @@ export default function Hero() {
                 <AnimatedTrybIcon className="w-12 h-12" />
               </div>
               <Image
-                src="images/black-girl.jpg"
+                src="images/black-girl.webp"
                 alt="Samuel Oyetunde - Creative Designer"
                 fill
                 className="object-cover"
