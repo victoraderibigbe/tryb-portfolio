@@ -52,7 +52,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 md:h-full min-h-96">
               <Image
-                src="images/overview.webp"
+                src="images/profile-rec.jpg"
                 alt="TRYB Brand Overview"
                 fill
                 className="object-cover rounded-xl"

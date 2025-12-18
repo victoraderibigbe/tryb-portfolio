@@ -5,9 +5,12 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -40,15 +43,24 @@ export default function Navigation() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-700 dark:text-gray-300 hover:text-teal dark:hover:text-teal-light font-medium transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "hover:text-teal dark:hover:text-teal-light font-medium transition-colors duration-300",
+                  isActive
+                    ? "text-orange  hover:underline hover:underline-offset-4"
+                    : "text-gray-700 dark:text-gray-300"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Theme Toggle and CTA */}
@@ -75,16 +87,25 @@ export default function Navigation() {
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col gap-4 p-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-teal dark:hover:text-teal-light font-medium transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "hover:text-teal dark:hover:text-teal-light font-medium transition-colors duration-300",
+                    isActive
+                      ? "text-orange  hover:underline hover:underline-offset-4"
+                      : "text-gray-700 dark:text-gray-300"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link href="/contact" className="btn-secondary w-full text-center">
               Book a Design
             </Link>

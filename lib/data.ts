@@ -178,7 +178,7 @@ export const contacts: Contact[] = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "Samuel Oyetunde",
-    href: "https://www.linkedin.com/in/samuel-oyetunde-6a1b78250",
+    href: "https://www.linkedin.com/in/tryb",
   },
   {
     icon: FaXTwitter,
