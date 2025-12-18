@@ -5,7 +5,6 @@ import type React from "react";
 import { useState } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import { Mail, MessageCircle, Linkedin, Instagram } from "lucide-react";
 import { contacts } from "@/lib/data";
 
 export default function Contact() {
@@ -18,6 +17,8 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -26,22 +27,49 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        projectType: "",
-        description: "",
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-      setSubmitted(false);
-    }, 3000);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          projectType: "",
+          description: "",
+        });
+        setSubmitted(false);
+      }, 3000);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -81,7 +109,8 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all"
+                    disabled={loading}
+                    className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-900 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Your name"
                   />
                 </div>
@@ -96,7 +125,8 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all"
+                    disabled={loading}
+                    className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-900 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -110,7 +140,8 @@ export default function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all"
+                    disabled={loading}
+                    className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-900 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="+234 (0) 123 456 7890"
                   />
                 </div>
@@ -124,13 +155,18 @@ export default function Contact() {
                     value={formData.projectType}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 dark:bg-slate-950 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all"
+                    disabled={loading}
+                    className="w-full px-4 py-3 dark:bg-slate-900 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="">Select a project type</option>
-                    <option value="branding">Brand Identity Design</option>
-                    <option value="graphic">Graphic Design</option>
-                    <option value="photography">Photography & Editing</option>
-                    <option value="other">Other</option>
+                    <option value="Brand Identity Design">
+                      Brand Identity Design
+                    </option>
+                    <option value="Graphic Design">Graphic Design</option>
+                    <option value="Photography & Editing">
+                      Photography & Editing
+                    </option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
@@ -143,14 +179,29 @@ export default function Contact() {
                     value={formData.description}
                     onChange={handleChange}
                     required
+                    disabled={loading}
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-900 rounded-lg focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
-                <button type="submit" className="w-full btn-primary">
-                  {submitted ? "Message Sent!" : "Send Message"}
+                {error && (
+                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={loading || submitted}
+                >
+                  {loading
+                    ? "Sending..."
+                    : submitted
+                    ? "Message Sent! ✓"
+                    : "Send Message"}
                 </button>
               </form>
             </div>
@@ -169,7 +220,7 @@ export default function Contact() {
                       href={method.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-4 p-6 bg-color border border-gray-200 rounded-xl hover:border-teal hover:shadow-lg transition-all group"
+                      className="flex items-start gap-4 p-6 bg-color border border-gray-200 dark:border-gray-700 rounded-xl hover:border-teal hover:shadow-lg transition-all group"
                     >
                       <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                         <Icon className="w-6 h-6 text-white" />
@@ -186,7 +237,7 @@ export default function Contact() {
               </div>
 
               {/* Social Links */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <h3 className="font-heading font-bold text-teal dark:text-teal-light mb-4">
                   Follow My Journey
                 </h3>
