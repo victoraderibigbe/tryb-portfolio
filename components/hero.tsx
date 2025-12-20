@@ -26,7 +26,10 @@ export default function Hero() {
               <Link href="/portfolio" className="btn-primary text-center">
                 See My Works
               </Link>
-              <Link href="/contact" className="btn-outline text-center">
+              <Link href="/courses" className="btn-outline text-center">
+                Join My Courses
+              </Link>
+              <Link href="/contact" className="btn-secondary text-center">
                 Book a Design
               </Link>
             </div>

@@ -2,6 +2,7 @@
 
 import { Project } from "@/lib/data-types";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -75,9 +76,14 @@ export default function ProjectCard({ project }: { project: Project }) {
               <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-bold text-white mb-1.5 sm:mb-2">
                 {project.title}
               </h3>
-              <p className="text-sm sm:text-base text-gray-300 line-clamp-3 sm:line-clamp-none">
+              <p className="text-sm sm:text-base text-gray-300 line-clamp-3 sm:line-clamp-none mb-6">
                 {project.description}
               </p>
+              <Link href="/contact" className="btn-secondary text-center">
+                {project.category.toLowerCase() === "photography"
+                  ? "Book a Session"
+                  : "Book a Design"}
+              </Link>
             </div>
           </div>
         </div>

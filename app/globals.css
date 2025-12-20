@@ -142,15 +142,15 @@
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-teal dark:bg-teal-light text-white dark:text-navy font-semibold rounded-lg hover:bg-teal-light dark:hover:bg-orange transition-colors duration-300;
+    @apply px-6 py-3 bg-teal dark:bg-teal-light text-white font-semibold rounded-lg hover:bg-teal-light dark:hover:bg-teal transition-colors duration-300 cursor-pointer;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-orange dark:bg-orange text-white font-semibold rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors duration-300;
+    @apply px-6 py-3 bg-orange dark:bg-orange text-white font-semibold rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors duration-300 cursor-pointer;
   }
 
   .btn-outline {
-    @apply px-6 py-3 border-2 border-teal dark:border-teal-light text-teal dark:text-teal-light font-semibold rounded-lg hover:bg-teal hover:text-white dark:hover:bg-teal-light dark:hover:text-navy transition-colors duration-300;
+    @apply px-6 py-3 border-2 border-teal dark:border-teal-light text-teal dark:text-teal-light font-semibold rounded-lg hover:bg-teal hover:text-white dark:hover:bg-teal-light dark:hover:text-navy transition-colors duration-300 cursor-pointer;
   }
 
   .section-padding {
