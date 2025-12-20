@@ -342,7 +342,7 @@ export const services: Service[] = [
     id: 1,
     icon: Sparkles,
     title: "Brand Identity Design",
-    image: "images/brand1.webp",
+    image: "images/brands/honey-scent.webp",
     description:
       "I create logos and visual systems that define your brand and make you unforgettable.",
     features: [
@@ -357,7 +357,7 @@ export const services: Service[] = [
     id: 2,
     icon: Palette,
     title: "Graphic Design",
-    image: "images/flyer1.webp",
+    image: "images/flyers/tent-of-revival.webp",
     description:
       "From social media flyers to posters, banners, and digital ads — I design visuals that command attention.",
     features: [
